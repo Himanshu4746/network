@@ -1,5 +1,5 @@
 #include<stdio.h>
-#define MAX 10
+#define MAX 1000
 int front=-1,rear=-1,queue[1000];
 int delq()
 {
@@ -21,7 +21,7 @@ void insq(int i)
 }
 int main()
 {
-	int t=0,i=1,j=1,cap,n,a,q=1,rate;
+	int t=0,i=1,cap,n,a,rate;
 	printf("\nEnter the bucket capacity:");
 	scanf("%d",&cap);
 	printf("\nEnter the rate at which packets must be sent:");
@@ -35,11 +35,10 @@ int main()
 		if(t==0)
 		{
 			printf("%d Delivered\n",delq());
-			j++;
 		}
 		else
 		{
-			if( (q-j) >= cap )
+			if( (rear-front)+2 > cap )
 			{
 				printf("%d discarded\n",i);
 				i++;
@@ -49,7 +48,6 @@ int main()
 				printf("%d queued\n",i);
 				insq(i);
 				i++;
-				q++;
 			}
 		}
 	}
